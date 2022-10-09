@@ -333,7 +333,7 @@ nav .fa{
   width: 80%;
   max-width: 70rem;
   padding: 2rem;
-  background-image: url(css/feedback.png);
+  background-image: url(feedback.png);
   box-shadow: 1rem 2rem 3rem 8px rgba(0, 0, 2, .4);
   display: flex;
   align-items: center;
@@ -1512,7 +1512,7 @@ gap:15px;
 .sub-header7{
     height: 50vh;
     width: 100%;
-    background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url(syllabus.jpg); ;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)),url(syllabus.jpg); 
     background-position: center;
     background-size: cover;
     text-align: center;
