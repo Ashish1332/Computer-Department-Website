@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vmvcpsdept</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Oswald:wght@500;600&family=Poppins:wght@100;300;400;600;700&family=Teko:wght@500&display=swap"
+    rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,600;1,200;1,400;1,600&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- navigation bar -->
+  <section class="header">
+    <nav>
+      <a href="index.html"><img src="img/college logo.png" alt="logo"></a>
+      <a href="india@75.html"><img src="img/logo_75.png" alt="aazadi75"></a>
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" id="menuicons" onclick="hideMenu()"></i>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="resources.html">RESOURCES</a></li>
+          <li><a href="projects.html">PROJECTS</a></li>
+          <li><a href="value,added.program.html">VALUE ADDED PROGRAMS</a></li>
+          <li><a href="hod.desk.html">HOD DESK</a></li>
+          <li><a href="vision and mission.html">VISION AND MISSION</a></li>
+          <li><a href="faculty.html">FACULTY</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <i class="fa fa-bars" id="menuicons" onclick="showMenu()"></i>
+    </nav>
+    <!-- tital -->
+    <div class="text-box">
+      <h1>Department of Computer Science</h1>
+      <p>Gaurishankar Seva Samiti's Vidnyan Mahavidyalaya, Malkapur</p>
+      <a href="contact.html" class="hero-btn"></a>
+      <script>
+        const btn = document.querySelector('hero-btn')
+        btn.addEventListener('mouseover', (e) => {
+          const x = e.pageX - btn.offsetLeft
+          const y = e.pageY - btn.offsetTop
+          btn.style.setProperty('--x', x + 'px')
+          btn.style.setProperty('--y', y + 'px')
+        })
+      </script>
+    </div>
+    <div class="scrolldown">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </section>
+
+
+  <!-- slider -->
+  <section class="sliderimg2" >
+    <div class="rt-container">
+      <div class="col-rt-12">
+        <div class="Scriptcontent">
+          <section class="auto-slider">
+            <div id="slider">
+              <figure>
+                <img src="img/slide-1.jpg" alt="Image">
+                <img src="img/slide-2.jpg" alt="Image">
+                <img src="img/slide-3.jpg" alt="Image">
+                <img src="img/slide-4.jpg" alt="Image">
+                <img src="img/slide-2.jpg" alt="Image">
+              </figure>
+              <div class="indicator"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- feedback Section -->
+  <section class="feedback">
+    <div class="blog-post">
+      <div class="blog-post_img">
+        <img src="/img/principle.jpg" alt="img">
+      </div>
+      <div class="blog-post_info">
+        <h1 class="blog-post_tital">Principal's message: </h1>
+        <p class="blog-post_text"><i class="fa fa-quote-left" aria-hidden="true"></i> The prime objective of Vidnyan Mahavidyalaya is to focus majorly on providing a platform to a student so
+          that he learns about his inner potential.We want all our students to achieve their full potential. Our task is
+          to make it possible and our mission is to provide a platform for the same.We firmly believe in the dictum of
+          the Quote :<br>
+          “ Where a Team Works, Dream Works" <i class="fa fa-quote-right" aria-hidden="true"></i></p>
+          <p class="vision-colfeed"> <span>
+            Dr. B. B. Wankhade <br>Pricipal <br> </span>
+        </p>
+
+      </div>
+    </div>
+   
+ </section>
+  <!-- End feedback Section -->
+  <!-- javascript for toggle menu  -->
+  <SCript>
+
+    var navLinks = document.getElementById("navLinks");
+    function showMenu() {
+      navLinks.style.right = "0"
+    }
+    function hideMenu() {
+      navLinks.style.right = "-200px"
+    }
+  </SCript>
+   <!-- cards -->
+   <section class="card10">
+    <div class="row1-container">
+       <div class="box box-down cyan">
+        <a href="projects.html" target="_blank"> 
+          <h2>Recent Projects</h2>
+          <p>It includes the projects made by B.Sc. final year students.</p>
+          <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt=""></a>
+      </div>
+    
+  
+      <div class="box red">
+        <a href="resources.html" target="_blank">
+          <h2>Resources</h2>
+          <p>You can download notes syllabus and many more</p>
+         <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+        </a>
+      
+      </div>
+  
+      <div class="box box-down blue">
+        <a href="value,added.program.html" target="_blank">
+          <h2>Value Added Programs</h2>
+          <p>Programs organise by department of computer science.</p>
+          <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
+        </a>
+       
+      </div>
+    </div>
+    <div class="row2-container">
+      <div class="box orange">
+        <a href="india@75.html" target="_blank">
+          <h2>Blog</h2>
+          <p>Read the blog written by college students.</p>
+          <img src="https://assets.codepen.io/2301174/icon-karma.svg" alt="">
+        </a>
+       
+      </div>
+    </div>
+  </section>
+  <!-- india@75 -->
+  <article class="card">
+    <img src="/img/india@75.jpeg" alt="india@75" class="card_image">
+    <div class="card_info">
+      <h2 class="card_info-tital"> Azadi Ka Amrit Mahotsav</h2>
+      <p class="card_info-desc">On behalf of the local science college, Har Ghar Tiranga Abhiyaan was organized on 11th
+        August as part of the Amrit Mahotsav of Freedom and an awareness rally was organized to commemorate the brave
+        martyrs and great freedom fighters. The rally was started from... <a href="india@75.html" target="_blank"> read more.</a></p>
+    </div>
+  </article>
+  <!-- --------------------------------App------------------------------------ -->
+  <section class="mobileapp_section">
+    <figure class="mobileapp">
+       <div class="mobileapp_hero">
+           <img class="mobileapp_img" src="/img/app.png" alt="img">
+       </div>
+       <div class="mobileapp_content">
+           <div class="mobileapp_info">
+               <h5 class="mobileapp_tital2">DOWNLOAD <span>OUR APP</span> </h5>
+               <p class="mobileapp_student">Can run on all android mobiles.<br>
+              use it to stay updated.</p>
+               <div class="myapp"><a href=""> <button class="appcta">Download app here <i class="fa fa-arrow-down" aria-hidden="true"></i>
+               </button></a>
+               
+               </div>
+             
+           </div>
+          
+       </div>
+      
+      
+   </section>
+
+ <!-- emoji feedback -->
+  <section class="emojifeedback">
+  <div class="app">
+    <h1>Was this page helpful?</h1>
+    <p>Let us know how we did</p>
+  
+    <div class="container10">
+      <div class="item">
+        <label for="0">
+        <input class="radio" type="radio" name="feedback" id="0" value="0">
+        <span>🤬</span>
+      </label>
+      </div>
+  
+      <div class="item">
+        <label for="1">
+        <input class="radio" type="radio" name="feedback" id="1" value="1">
+        <span>🙁</span>
+      </label>
+      </div>
+  
+      <div class="item">
+        <label for="2">
+        <input class="radio" type="radio" name="feedback" id="2" value="2">
+        <span>😶</span>
+      </label>
+      </div>
+  
+      <div class="item">
+        <label for="3">
+        <input class="radio" type="radio" name="feedback" id="3" value="3">
+        <span>😁</span>
+      </label>
+      </div>
+  
+      <div class="item">
+        <label for="4">
+        <input class="radio" type="radio" name="feedback" id="4" value="4">
+        <span>😍</span>
+      </label>
+      </div>
+  
+    </div>
+  </div>
+  </section>
+  
+
+  <!-- Footer-->
+  <section class="footer">
+    <h4>-About Us-</h4>
+    <p>Department Of Computer Science,Vidnyan Mahavidyalaya,Malkapur</p>
+    <div class="icons">
+      <i class="fa fa-facebook"></i>
+      <i class="fa fa-twitter"></i>
+      <i class="fa fa-instagram"></i>
+      <i class="fa fa-linkedin"></i>
+    </div>
+    <p>Made By <i class="fa fa-laptop"></i> Ashish Bhangale</p>
+  </section>
+ 
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Oswald:wght@500;600&family=Poppins:wght@100;300;400;600;700&family=Teko:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- navigation bar -->
+    <section class="sub-header4">
+        <nav>
+            <a href="index.html"><img src="img/college logo.png" alt="logo"></a>
+            <a href="india@75.html"><img src="img/logo_75.png" alt="aazadi75"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" id="menuicons" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="resources.html">RESOURCES</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
+                    <li><a href="value,added.program.html">VALUE ADDED PROGRAMS</a></li>
+                    <li><a href="hod.desk.html">HOD DESK</a></li>
+                    <li><a href="vision and mission.html">VISION AND MISSION</a></li>
+                    <li><a href="faculty.html">FACULTY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" id="menuicons" onclick="showMenu()"></i>
+        </nav>
+         <!-- tital -->
+        <h1>Resources</h1>
+        </section>
+        <section class="syllabustital">
+            <h1> Syllabus</h1>
+            <p>Semister-I</p>
+            <div>
+                <p class="syllabus"><strong>Computer Fundamentals and C Programming</strong> <br>UNIT-I : Introduction to Computers :<br>
+                    Characteristics, classification of Computers, block diagram
+                    of computer, memory and their types: Primary and secondary memory . Peripheral devices : Keyboard, mouse, scanner, printers : Impact, Non-impact, DMP, inkjet ,laser.<br>UNIT-II : Introduction to OS :<br>
+                    DOS : Booting process, formatting, directory structure, FAT.
+                    Internal DOS commands : REN, CD, MD,RD, DIR, DEL,
+                    COPY, TYPE, DATE, TIME, COPYCON, PROMPT External commands: FORMAT , XCOPY, CHKDSK, PATH,
+                    ATTRIB, AUTOEXEC. BAT, CONFIG.SYS Windows : Introduction, features, Windows Explorer Number system :
+                    Decimal, binary, octal, hexadecimal and their conversions,
+                    ASCII Code.<br>UNIT-III : Introduction to Internet :<br> Direct, Types of Internet connection: Direct dial-up, broadband, Internet protocol : TCP/IP,
+                    FTP, HTTP, Domain name e-mail address, WWW, web
+                    browser : Internet Explorer. Netscape navigator, search engines.<br>UNIT-IV : Programming Concept :<br> Algorithm flowcharting programming
+                    languages, assembler, interpreter, compiler programming process : program design, coding compilation, Execution, testing, debugging documentation structured programming : features and approaches.<br>UNIT-V : Elements of C : <br>Introduction to C, History, features structure
+                    of C program, header file, character set, keywords, identifiers, constants, variables, basic data types, symbolic constants,
+                    typedef operators & Expressions : Arithmetic, Relational, logical assignment, Increment and decrement, precedence of operators.<br>UNIT- VI : I/O Operations :<br>
+                    Formatted I/O : Printf ( ), Scanf ( ) , Unformatted I/O : getch
+                    ( ), getche ( ) , getchar ( ), putch ( ) , putche ( ), putchar ( ),
+                    gets ( ), Puts ( ) , Controal structure : if , if... else, nested if,
+                    conditional operator , switch, goto, for, while, do..while, nesting of loops, break, continue.<br><strong>Practicals :</strong>Minimum 16 practicals based on<br>A. Unit-II, III and MS-WORD, MSEXCEL (Minimum 8 Practicals )<br>B. Unit-IV to Unit-VI (Minimum 8 Practicals)</p>
+
+            </div>
+       </section>
+     <!-- javascript for toggle menu  -->
+     <SCript>
+
+        var navLinks=document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right="0"
+        }
+        function hideMenu(){
+            navLinks.style.right="-200px"
+        }
+    </SCript>
+ <!-- Footer-->
+     <section class="footer">
+      <h4>-About Us-</h4>
+      <p>Department Of Computer Science,Vidnyan Mahavidyalaya,Malkapur</p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made By <i class="fa fa-laptop"></i> Ashish Bhangale</p>
+     </section>
+    
+</body>
+</html>

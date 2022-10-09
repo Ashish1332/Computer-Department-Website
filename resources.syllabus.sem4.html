@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Oswald:wght@500;600&family=Poppins:wght@100;300;400;600;700&family=Teko:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- navigation bar -->
+    <section class="sub-header4">
+        <nav>
+            <a href="index.html"><img src="img/college logo.png" alt="logo"></a>
+            <a href="india@75.html"><img src="img/logo_75.png" alt="aazadi75"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" id="menuicons" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="resources.html">RESOURCES</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
+                    <li><a href="value,added.program.html">VALUE ADDED PROGRAMS</a></li>
+                    <li><a href="hod.desk.html">HOD DESK</a></li>
+                    <li><a href="vision and mission.html">VISION AND MISSION</a></li>
+                    <li><a href="faculty.html">FACULTY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" id="menuicons" onclick="showMenu()"></i>
+        </nav>
+         <!-- tital -->
+        <h1>Resources</h1>
+        </section>
+        <section class="syllabustital">
+            <h1> Syllabus</h1>
+            <p>Semister-IV</p>
+            <div>
+                <p class="syllabus"><strong>RDBMS and PL/SQL</strong><br>UNIT-I : Fundamental of DBMS :<br> Traditional file approach and comparison with DBMS Architecture of a
+                    database system, Data base approaches, storage structures, data representation, data independence, database
+                    models: Relational, Hierarchical, network, Relational Algebra, Object Based model, data dictionary and Database
+                    Administration. <br>UNIT-II: Relational Model : <br>Relations, Domains and Attributes, keys, E-R diagrams, Reducing E-R diagrams to
+                    tables, function dependency, Entity, Relationship, Mapping Constraints, Normalization: 1NF, 2NF, 3NF, 4NF,
+                    BCNF. <br>UNIT-III : Introduction to SQL :  <br>: Components of SQL, data types, operators, DDL Commands : CREATE,
+                    ALTER, DROP, RENAME for tables. Data Integrity and types of integrity constraints. DML Commands:
+                    SELECT, INSERT, DELETE & UPDATE; Clauses: ORDER By, GROUP By and Having clause. <br>UNIT-IV :Functions : Number Functions:<br> AVG, MAX, MIN, SUM, COUNT, TO-NUMBER, GREATEST,
+                    LEAST, ABS, MOD, FLOOR, CEIL, TRUNC, SQRT, SIGN, SIN, COS, LOG, EXP.
+                    Character Function : INITCAP, LOW ER, UPPER, INSTR, LENGTH, LTRIM, RTRIM, LPAD, RPAD,
+                    SOUNDEX, Conversion Functions: TO_Number, TO_Character, DECODE. Date functions: ADD_Months,
+                    Last_Day, Months_Between, Next_Day, Sys_Date, New_Time. Joins : Self join, equijoin and outer join.<br>UNIT-V: PL/SQL:<br>: Features and block structure, variables and constant, data types, control structure. Cursor:
+                    Concepts of cursor, types, declaring, opening, using cursors, fetching data, closing a cursor, cursor attributes.
+                    Trigger: create, Types, Creating Before and After Trigger, <br>UNIT-VI: Transaction:<br>Rollback, commit and save point, rollback segment. Create Procedure and create
+                    function. Securities of Database: Users, creating users, roles, creating roles, types of privileges, GRANT,
+                    REVOKE command, Table and Row Locking. <br><strong>Practical :</strong> Minimum 16 Practical based on<br>A: Unit II & III (Minimum 8 practical)
+                    <br>B: Unit IV, Unit V and Unit VI (Minimum 8 practical)</p>
+
+            </div>
+       </section>
+     <!-- javascript for toggle menu  -->
+     <SCript>
+
+        var navLinks=document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right="0"
+        }
+        function hideMenu(){
+            navLinks.style.right="-200px"
+        }
+    </SCript>
+ <!-- Footer-->
+     <section class="footer">
+      <h4>-About Us-</h4>
+      <p>Department Of Computer Science,Vidnyan Mahavidyalaya,Malkapur</p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made By <i class="fa fa-laptop"></i> Ashish Bhangale</p>
+     </section>
+    
+</body>
+</html>

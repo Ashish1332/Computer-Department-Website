@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Oswald:wght@500;600&family=Poppins:wght@100;300;400;600;700&family=Teko:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- navigation bar -->
+    <section class="sub-header4">
+        <nav>
+            <a href="index.html"><img src="img/college logo.png" alt="logo"></a>
+            <a href="india@75.html"><img src="img/logo_75.png" alt="aazadi75"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" id="menuicons" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="resources.html">RESOURCES</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
+                    <li><a href="value,added.program.html">VALUE ADDED PROGRAMS</a></li>
+                    <li><a href="hod.desk.html">HOD DESK</a></li>
+                    <li><a href="vision and mission.html">VISION AND MISSION</a></li>
+                    <li><a href="faculty.html">FACULTY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" id="menuicons" onclick="showMenu()"></i>
+        </nav>
+         <!-- tital -->
+        <h1>Resources</h1>
+        </section>
+        <section class="syllabustital">
+            <h1> Syllabus</h1>
+            <p>Semister-VI</p>
+            <div>
+                <p class="syllabus"><strong>Advanced java and VB.net</strong><br>Unit I : Eception Handling and Multithreading :<br> Eception Handling: Concept of Exception handling, Type of
+                    Exception, Try, Catch, and Finally. Multiple Catch blocks, Nested Try Statements, throw, throws. Multithreading:
+                    Multithreading concept, life cycle, creating and running thread, thread priority.<br>Unit II : Applet: <br>Introduction to Applet, Applet life cycle, HTML applet tag with all attributes, Running the applet,
+                    Passing parameters to applets, Displaying using applet viewer, getDocumentBase() and getCodeBase() methods, Applet
+                    context, Applet vs Application, Graphics introduction, Graphic class, draw lines, circle, rectangle, ellipse.
+                    <br>Unit III: Event Handling and AWT: <br>Introduction, Event delegation model, Java AWT event description, sources of
+                    event, Event listener interfaces, Adapter classes, Inner classes. AWT (Abstract Window Toolkit): Introduction, AWT
+                    Controls Label, Button, Checkboxes, Lists, ScrollBar, TextField, TextArea, Layout manager.<br>Unit IV: Windows Applications: Forms: <br> Adding Controls to Forms, Handling Events, MsgBox, InputBox , Working
+                    with Multiple Forms, Setting the Startup Form, SDI & MDI Forms, Handling Mouse & Keyboard Events, Common
+                    controls: Text Boxes, Rich Text Boxes, Labels, Buttons, Checkboxes, Radio Buttons, Group Boxes, List Boxes, Checked
+                    List Boxes, Combo Boxes, Picture Boxes, Scroll Bars, Tool Tips, Timers, properties – methods<br>UNIT V: Object Oriented Programming: Classes and Objects:<br>Class definition, Creating objects, Defining Member
+                    functions, Methods and Events, Attaching a class with form, Delegates. Eceptions Handling: Exception classes in .net
+                    framework, Structured and Unstructured exceptions, tracing errors, breakpoints, watch, Quick watch.<br>UNIT-VI :<br>Data Access with ADO.Net, accessing data with Server Explorer, Accessing Data with data Adaptors and Data
+                    sets, Creating a new data connection, creating and populating Data set, displaying data in Data Grid, selecting a data
+                    provider, Data accessing using Data adapter Control, Binding Data to Controls.<br><strong>Practical :</strong> Minimum 16 Practical based on<br>A: Unit I , Unit II and Unit. III (Minimum 8 practical)
+                    <br>B: Unit IV, Unit V and Unit VI (Minimum 8 practical)</p>
+
+            </div>
+       </section>
+     <!-- javascript for toggle menu  -->
+     <SCript>
+
+        var navLinks=document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right="0"
+        }
+        function hideMenu(){
+            navLinks.style.right="-200px"
+        }
+    </SCript>
+ <!-- Footer-->
+     <section class="footer">
+      <h4>-About Us-</h4>
+      <p>Department Of Computer Science,Vidnyan Mahavidyalaya,Malkapur</p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made By <i class="fa fa-laptop"></i> Ashish Bhangale</p>
+     </section>
+    
+</body>
+</html>

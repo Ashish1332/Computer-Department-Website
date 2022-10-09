@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Oswald:wght@500;600&family=Poppins:wght@100;300;400;600;700&family=Teko:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- navigation bar -->
+    <section class="sub-header4">
+        <nav>
+            <a href="index.html"><img src="img/college logo.png" alt="logo"></a>
+            <a href="india@75.html"><img src="img/logo_75.png" alt="aazadi75"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" id="menuicons" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="resources.html">RESOURCES</a></li>
+                    <li><a href="projects.html">PROJECTS</a></li>
+                    <li><a href="value,added.program.html">VALUE ADDED PROGRAMS</a></li>
+                    <li><a href="hod.desk.html">HOD DESK</a></li>
+                    <li><a href="vision and mission.html">VISION AND MISSION</a></li>
+                    <li><a href="faculty.html">FACULTY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" id="menuicons" onclick="showMenu()"></i>
+        </nav>
+         <!-- tital -->
+        <h1>Resources</h1>
+        </section>
+        <section class="syllabustital">
+            <h1> Syllabus</h1>
+            <p>Semister-III</p>
+            <div>
+                <p class="syllabus"><strong>Data Structure and C++</strong><br>UNIT-I :<br> Data structure: Introduction to data structure, types of data structure: primitive and non primitive, linear
+                    and non linear data structure, data structure operations.
+                    Linear arrays: Definition and concepts, representations, operations on arrays: traversing, inserting, deleting.
+                    Stacks: Definition and concepts, representations, operations on stacks: Push , Pop.<br>UNIT-II: <br>Queues: Definition and concepts, representations, operations: Insert and delete; concept of circular queue,
+                    dequeue, priority queue. Linked List: Introduction, implementation of linked list, types of linked list: single,
+                    circular and doubly linked list. Operations on linked list: Insert, Delete, Search.<br>UNIT-III : <br>Trees: Definition and concept, binary tree, traversing operations: in order, pre-order, post-order
+                    Sorting and Searching: Definition and concept, sorting techniques: bubble,
+                    selection, insertion, merge and quick sort. Searching techniques: Sequential and binary searching.<br>UNIT-IV :<br> Object Oriented Programming: features, advantages and applications of oops. Introduction to C++,
+                    Program structure in C++. Classes and Objects: classes and objects specifiers, defining data member and member
+                    functions; accessing members. Managing console I/O : Formatted and Unformatted, Usage of manipulators,
+                    memory allocation operators: new and delete, scope resolution operator.<br>UNIT-V :<br>: : Functions in C++: Passing objects to and returning objects from functions. Function overloading and
+                    default argument, Inline function, Friend function. Array of Objects, Pointer to objects, ‘this’ pointer. Constructor
+                    and Destructor: Types of constructor, Usage of Constructor.<br>UNIT-VI :<br>Operator Overloading : Definition, Overloading unary and binary operators. Inheritance: Definition,
+                    Visibility mode; Types of inheritance with example, virtual base classes and abstract base classes.<br><strong>Practical :</strong> Minimum 16 Practical based on<br>A: Unit I , Unit II and Unit III (Minimum 8 practical using C Programming Language)
+                    <br>B: Unit IV, Unit V and Unit VI (Minimum 8 practical)</p>
+
+            </div>
+       </section>
+     <!-- javascript for toggle menu  -->
+     <SCript>
+
+        var navLinks=document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right="0"
+        }
+        function hideMenu(){
+            navLinks.style.right="-200px"
+        }
+    </SCript>
+ <!-- Footer-->
+     <section class="footer">
+      <h4>-About Us-</h4>
+      <p>Department Of Computer Science,Vidnyan Mahavidyalaya,Malkapur</p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>Made By <i class="fa fa-laptop"></i> Ashish Bhangale</p>
+     </section>
+    
+</body>
+</html>
