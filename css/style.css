@@ -333,7 +333,7 @@ nav .fa{
   width: 80%;
   max-width: 70rem;
   padding: 2rem;
-  background-image: url(/css/feedback.png);
+  background-image: url(css/feedback.png);
   box-shadow: 1rem 2rem 3rem 8px rgba(0, 0, 2, .4);
   display: flex;
   align-items: center;
