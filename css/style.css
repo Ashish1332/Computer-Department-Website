@@ -1765,6 +1765,34 @@ gap:15px;
   flex-wrap: wrap;
   flex-direction: row;
 }
+.project6{
+  background-image:  linear-gradient(60deg, #29323c 0%, #485563 100%);;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:row-reverse;
+}
+.project7{
+  background-image:  linear-gradient(60deg, #29323c 0%, #485563 100%);;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.project8{
+  background-image:  linear-gradient(60deg, #29323c 0%, #485563 100%);;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:row-reverse;
+}
+.project9{
+  background-image:  linear-gradient(60deg, #29323c 0%, #485563 100%);;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
 .project_hero{
   flex: 0 0 50%;
   position: relative;
@@ -1872,6 +1900,22 @@ gap:15px;
 
   }
   .project5{
+    flex-direction: column;
+
+  }
+  .project6{
+  flex-direction: column;
+
+  }
+  .project7{
+    flex-direction: column;
+
+  }
+  .project8{
+    flex-direction: column;
+
+  }
+  .project9{
     flex-direction: column;
 
   }
