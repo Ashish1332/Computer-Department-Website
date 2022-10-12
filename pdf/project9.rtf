@@ -1,0 +1,1129 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Times New Roman;}}
+{\*\generator Riched20 10.0.22000}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 /*\par
+\f1\fs28 Sudoku C++ Program\f0\fs22\par
+\f1\fs24 Created by: Minal Nitin Chaudhari \par
+*/\par
+\par
+#include <iostream>     //For input and output.\par
+#include <iomanip>      //For ouput manipulations. (setw, right) \par
+#include <windows.h>    //For colored text and other Windows function.\par
+#include <conio.h>      //For Getch. (get users input)\par
+#include <cmath>        //For mathematical purpose Like rounding, square root, etc.\par
+\par
+using namespace std;    //Standard Naming Convention, to disregard std:: part in the code. \par
+                        //To avoid namespace conflicts.\par
+\par
+//VOID FUNCTIONS\par
+void playSudoku();\par
+void exitMenu();\par
+void checkGame();\par
+void upKey();\par
+void downKey();\par
+void leftKey();\par
+void rightKey();\par
+void pauseGame();\par
+void helpSudoku (string located);\par
+void setPuzzle(int level);\par
+void makePuzzle(string target, string puzzle);\par
+void setNumberKey(string value);\par
+void showProgressHardMode(double final_progress);\par
+void hideCursor(bool condition);\par
+void gotoMenu(char choice );\par
+void colorSet(int tint); \par
+void gamePart(string part);\par
+void mainGame();\par
+\par
+//OTHER FUNCTIONS\par
+char gameLevel();\par
+\par
+//GLOBAL VARIABLES\par
+int level = 0;\par
+int correct = 0; \par
+int sudokuPointer =0;\par
+int sudokuPuzzleSize;\par
+int sudokuBuildNumber;\par
+double final_progress = 0;\par
+string sudokuStatus;\par
+string sudokuPuzzle [81];\par
+string sudokuHighlights [81];\par
+string sudokuSolution[81];\par
+\par
+//MAIN PROGRAM\par
+int main()\par
+\{\par
+        //HIDE CURSOR \par
+    hideCursor(true);\par
+        //SET TITLE\par
+        SetConsoleTitle(("Sudoku"));\par
+\par
+        //VARIABLE\par
+        int choice;\par
+   \par
+        //DISPLAY\par
+        while(true)\{\par
+\par
+        system("cls");\par
+        colorSet (4); //DARK RED\par
+         gamePart("line_small_left");\par
+        colorSet (15); //WHITE\par
+         cout<<"SUDOKU";\par
+        colorSet (4); //DARK RED\par
+         gamePart("line_small_right");\par
+        colorSet (15); //WHITE\par
+         cout<<"[1] ";\par
+        colorSet (11); //LIGHT CYAN\par
+         cout<<"START"<<endl;\par
+        colorSet(15); //WHITE\par
+         cout<<"[2] ";\par
+        colorSet (14); //YELLOW \par
+         cout<<"INSTRUCTIONS"<<endl;\par
+        colorSet(15); //WHITE\par
+         cout<<"[3] ";\par
+        colorSet(12); //LIGHT RED\par
+         cout<<"EXIT"<<endl;\par
+        colorSet (4); //RED\par
+         gamePart("seperator");\par
+        colorSet(7); //LIGHT GRAY\par
+         cout<<" (Press the number of your choice!) "; \par
+        colorSet (15); //WHITE\par
+\par
+            //GET USER CHOICE\par
+            char select = getch();\par
+            if(!(select<'1' || select> '3'))\{\par
+                choice = select;\par
+                break;\par
+            \}\par
+\par
+    \}\par
+\par
+    //GO TO MENU OF USER CHOICE\par
+    gotoMenu(choice);\par
+\par
+\}\par
+\par
+//MENU CENTRAL\par
+void gotoMenu (char choice) \{\par
+    if (choice == '1')\{\par
+        playSudoku(); //GO TO PLAY MENU\par
+    \} \par
+    else if (choice == '2')\{\par
+        helpSudoku ("main"); //GO TO INSTRUCTIONS MENU\par
+    \}\par
+    else if (choice == '3')\{\par
+    exitMenu(); //GO TO EXIT MENU\par
+    \}\par
+\}\par
+\par
+//PLAY\par
+void playSudoku()\{\par
+\par
+    //GAME LEVEL\par
+    char setLevel = gameLevel();\par
+\par
+    //CONDITION LEVEL\par
+    if(setLevel == '4')\{\par
+        //GO TO MENU\par
+        main();\par
+    \}\par
+    else\{\par
+        //GAME START\par
+        level= (int) setLevel - 48; //Initialize Level\par
+        setPuzzle (level);          //SET LEVEL\par
+        sudokuStatus = "playing";   //SET STATUS \par
+        sudokuPointer = 0;          //RESET POINTER\par
+        checkGame();                //For Progress\par
+        mainGame();                 //Enter the Game\par
+    \}\par
+\par
+        //PAUSE\par
+        getch(); \par
+        //GO TO MAIN MENU\par
+        main();\par
+\}\par
+\par
+//GAME CENTRAL\par
+char gameLevel()\{\par
+\par
+    char choice;\par
+\par
+    //DISPLAY\par
+    do\{\par
+\par
+        system("cls");\par
+        colorSet (4); //DARK RED\par
+         gamePart("line_small_left");\par
+        colorSet (15); //15\par
+         cout<<"SUDOKU";\par
+        colorSet (4); //DARK RED\par
+         gamePart("line_small_right");\par
+        colorSet (13); //13\par
+         cout<<setw(29) <<right<<"SELECT A DIFFICULTY"<<endl;\par
+        colorSet (4); //DARK RED\par
+         gamePart("seperator"); \par
+        colorSet (15); //WHITE\par
+         cout<<"[1] ";\par
+        colorSet(10); //LIGHT GREEN\par
+         cout<<"EASY"<<endl; \par
+        colorSet (15); //WHITE\par
+         cout<<"[2] ";\par
+        colorSet (14); //YELLOW\par
+         cout<<"MEDIUM"<<endl;\par
+        colorSet(15); //WHITE\par
+         cout<<"[3] ";\par
+        colorSet(12); //LIGHT RED\par
+         cout<<"HARD"<<endl;\par
+        colorSet (4); //4\par
+         gamePart("seperator");\par
+        colorSet(15); //WHITE\par
+         cout<<"[4] ";\par
+        colorSet (11); //LIGHT CYAN\par
+         cout<<"BACK"<<endl;\par
+        colorSet (4); //4\par
+         gamePart("seperator");\par
+        colorSet (7); //LIGHT GRAY \par
+         cout<<" (Press the number of your choice!) "; \par
+        colorSet (15); //WHITE\par
+\par
+            //GET USER CHOICE\par
+            char select = getch(); \par
+            if(!(select<'1' || select>'4'))\{\par
+                choice = select;\par
+                break;\par
+            \}\par
+        \par
+        \} while(true);\par
+\par
+    return choice;\par
+\par
+\}\par
+\par
+//SHOW PROGRESS FOR HARD MODE \par
+void showProgressHardMode (double final_progress)\{\par
+    if(final_progress >= 69)\{ \par
+        if(final_progress >= 84)\{\par
+            if(final_progress >=94)\{\par
+                cout<<"Just a little bit!";\par
+            \}\par
+            else\{\par
+                 cout<<"Almost there!";\par
+            \}\par
+        \}\par
+        else\{\par
+            cout<<"Half-way there!";\par
+        \}\par
+    \}\par
+    else\{\par
+        cout<<"Unfinshed";\par
+    \}\par
+\}\par
+\par
+//SET PUZZLE\par
+void setPuzzle (int level)\{\par
+\par
+    //Variable\par
+    string dot = ".";\par
+    string puzzle, highlight, solution;\par
+\par
+    //Condition\par
+\par
+        //EASY\par
+        if (level == 1)\{\par
+\par
+                puzzle=(" .7.8|3.1. | . . " + dot \par
+                      + " .4. | .2.6|5. . " + dot \par
+                      + "6. . |9.4.7|8. .1" + dot \par
+\par
+                      + "2. . | . . | .4. " + dot\par
+                      + "5. . |7. .1| . .2" + dot\par
+                      + " .1. | . . | . .3" + dot\par
+\par
+                      + "4. .5| . . | . .9" + dot\par
+                      + " . .1|4.5. | .2. " + dot\par
+                      + " . . | .9.2|4.7. " );\par
+\par
+            highlight = ("0.F.F|F.F.0|0.0.0" + dot\par
+                      +  "0.F.0|0.F.F|F.0.0" + dot\par
+                      +  "F.0.0|F.F.F|F.0.F" + dot\par
+\par
+                      +  "F.0.0|0.0.0|0.F.0" + dot\par
+                      +  "F.0.0|F.0.F|0.0.F" + dot\par
+                      +  "0.F.0|0.0.0|0.0.F" + dot\par
+\par
+                      +  "F.0.F|0.0.0|0.0.F" + dot\par
+                      +  "0.0.F|F.F.0|0.F.0" + dot\par
+                      +  "0.0.0|0.F.F|F.F.0" );\par
+\par
+             solution = ("9.7.8|3.1.5|2.6.4" + dot\par
+                      +  "1.4.3|8.2.6|5.9.7" + dot\par
+                      +  "6.5.2|9.4.7|8.3.1" + dot\par
+\par
+                      +  "2.3.7|5.8.9|1.4.6" + dot\par
+                      +  "5.6.4|7.3.1|9.8.2" + dot\par
+                      +  "8.1.9|2.6.4|7.5.3" + dot\par
+\par
+                      +  "4.2.5|6.7.8|3.1.9" + dot\par
+                      +  "7.9.1|4.5.3 6.2.8" + dot\par
+                      +  "3.8.6|1.9.2|4.7.5" );\par
+    \}\par
+    //MEDIUM\par
+    else if (level == 2) \{\par
+\par
+               puzzle = (" .8.4|2. . | . .9" + dot\par
+                      +  "1. .2|8. . |5. . " + dot\par
+                      +  "9. . | .6. | . .3" + dot\par
+\par
+                      +  " .9. | . . |2.7. " + dot\par
+                      +  "5. . | . . | . .8" + dot\par
+                      +  " .4.8| . . | .3. " + dot\par
+\par
+                      +  "7. . | .2. | . .1" + dot\par
+                      +  " . .3| . .6|7. .4" + dot\par
+                      +  "4. . | . .5|3.9. ");\par
+\par
+            highlight = ("0.F.F|F.0.0|0.0.F" + dot \par
+                      +  "F.0.F|F.0.0|F.0.0" + dot\par
+                      +  "F.0.0|0.F.0|0.0.F" + dot\par
+\par
+                      +  "0.F.0|0.0.0|F.F.0" + dot\par
+                      +  "F.0.0|0.0.0|0.0.F" + dot\par
+                      +  "0.F.F|0.0.0|0.F.0" + dot\par
+\par
+                      +  "F.0.0|0.F.0|0.0.F" + dot\par
+                      +  "0.0.F|0.0.F|F.0.F" + dot\par
+                      +  "F.0.0|0.0.F|F.F.0" );\par
+\par
+             solution = ("3.8.4|2.5.7|1.6.9" + dot \par
+                      +  "1.6.2|8.3.9|5.4.7" + dot\par
+                      +  "9.7.5|1.6.4|8.2.3" + dot\par
+\par
+                      +  "6.9.1|3.4.8|2.7.5" + dot\par
+                      +  "5.3.7|6.9.2|4.1.8" + dot\par
+                      +  "2.4.8|5.7.1|9.3.6" + dot\par
+\par
+                      +  "7.5.9|4.2.3|6.8.1" + dot\par
+                      +  "8.2.3|9.1.6|7.5.4" + dot\par
+                      +  "4.1.6|7.8.5|3.9.2" );\par
+    \} \par
+    //HARD\par
+    else\{\par
+\par
+               puzzle = (" .8. |5.2. |6.4. " + dot\par
+                      +  "7. .6| . . | . .2" + dot\par
+                      +  "4.2. | . . | .3. " + dot \par
+\par
+                      +  " .5. | . .1| . . " + dot\par
+                      +  "6. . |7.8.3| . .9" + dot \par
+                      +  " . . |9. . | .6. " + dot\par
+\par
+                      +  " .3. | . . | .2.6" + dot\par
+                      +  "1. . | . . |3. .5" + dot\par
+                      +  " .9.2| .3.5| . . ");\par
+\par
+            highlight = ("0.F.0|F.F.0|F.F.0" + dot\par
+                      +  "F.0.F|0.0.0|0.0.F" + dot \par
+                      +  "F.F.0|0.0.0|0.F.0" + dot\par
+\par
+                      +  "0.F.0|0.0.F|0.0.0" + dot\par
+                      +  "F.0.0|F.F.F|0.0.F" + dot\par
+                      +  "0.0.0|F.0.0|0.F.0" + dot\par
+\par
+                      +  "0.F.0|0.0.0/0.F.F" + dot\par
+                      +  "F.0.0|0.0.0|F.0.F" + dot\par
+                      +  "0.F.F|0.F.F|0.0.0" );\par
+\par
+             solution = ("9.8.3|5.2.7|6.4.1" + dot\par
+                      +  "7.1.6|3.4.8|5.9.2" + dot\par
+                      +  "4.2.5|1.9.6|7.3.8" + dot\par
+\par
+                      +  "2.5.9|4.6.1|8.7.3" + dot\par
+                      +  "6.4.1|7.8.3|2.5.9" + dot\par
+                      +  "3.7.8|9.5.2|1.6.4" + dot\par
+\par
+                      +  "5.3.7|8.1.4|9.2.6" + dot\par
+                      +  "1.6.4|2.7.9|3.8.5" + dot\par
+                      +  "8.9.2|6.3.5|4.1.7" );\par
+        \}\par
+\par
+    //CREATE THE PUZZLE\par
+    makePuzzle("puzzle_layout", puzzle); \par
+    makePuzzle("highlight_layout", highlight); \par
+    makePuzzle("solution_layout", solution);\par
+\par
+\}\par
+\par
+//CONVERT STRING PUZZLE TO ARRAY \par
+void makePuzzle (string target, string puzzle)\{\par
+\par
+        //Variables\par
+        char cpuzzle[puzzle.length()];\par
+        int i;\par
+        int pointer = 0;\par
+        //Loop Function\par
+        for (i = 0; i < sizeof(cpuzzle); i++) \{ \par
+            cpuzzle[i] = puzzle[i]; \par
+            if(!(cpuzzle[i] == '.'||cpuzzle[i] == '|'))\{\par
+\par
+            string sudokuNumber (1, cpuzzle[i]);\par
+            if(target == "puzzle_layout")\{\par
+                //cout <<"["<<pointer<<"]: "<<sudokuNumber<<" ";\par
+                 sudokuPuzzle[pointer] = sudokuNumber;\par
+            \} \par
+            else if(target == "highlight_layout")\{\par
+                 //cout <<"["<<pointer<<"]: "<<sudokuNumber<<" "; \par
+                 sudokuHighlights [pointer] = sudokuNumber;\par
+            \}\par
+            else if(target == "solution_layout")\{\par
+                //cout <<"["<<pointer<<"]: "<<sudokuNumber<<" "; \par
+                sudokuSolution[pointer] = sudokuNumber;\par
+            \}\par
+             pointer++;\par
+        \}\par
+    \par
+    \}\par
+    cout<<endl<<endl;\par
+\par
+\}\par
+\par
+//MAIN GAME\par
+void mainGame()\{\par
+\par
+        //-- HEADER --//\par
+        system("cls");\par
+        colorSet(4); //DARK RED\par
+         gamePart("line_small_left");\par
+        colorSet(15);\par
+         cout<<"SUDOKU";\par
+        colorSet(4);\par
+            gamePart("line_small_right");\par
+         ///// LEVEL AND COLLECT PARTS /////\par
+        switch(level) \{\par
+         case 1:\par
+            colorSet(10);\par
+            cout<<setw(24) <<right<<"EASY LEVEL"<<endl;\par
+            break;\par
+         case 2:\par
+            colorSet(14);\par
+            cout<<setw(25) <<right<<"MEDIUM LEVEL"<<endl;\par
+            break;\par
+         default:\par
+            colorSet(12);\par
+            cout<<setw(24) <<right<<"HARD LEVEL"<<endl;\par
+        \}\par
+        //////////////////////////////////\par
+        colorSet (4);\par
+         gamePart("seperator");\par
+         cout<<endl;\par
+        //-- HEADER --//\par
+\par
+        //-- TABLE GENERATOR --//\par
+\par
+        /////////////////////\par
+        // SET TABLE COLOR //\par
+        int colorTable = 5;\par
+        ////////////////////\par
+\par
+        //IF PLAYER QUITS\par
+\par
+            //SET SUDOKU PUZZLE SIZE\par
+            sudokuPuzzleSize = (sizeof(sudokuPuzzle)/sizeof(sudokuPuzzle[0]));\par
+            //FETCH SOLUTION\par
+            if(sudokuStatus == "quitted")\{\par
+                 for(int checker = 0;checker < sudokuPuzzleSize; checker++)\{\par
+                    sudokuPuzzle[checker] = sudokuSolution[checker];\par
+                 \}\par
+            \}\par
+\par
+        //BUILD SUDOKU TABLE\par
+        sudokuBuildNumber = 0; //reset sudoku build number \par
+        for (int tpart = 1;tpart <= 182; tpart++)\{\par
+\par
+            //SUDOKU OUTER BORDER\par
+            if(tpart == 1 || tpart == 62 || tpart == 122 || tpart == 182)\{\par
+                colorSet(colorTable); \par
+                gamePart("sudoku_outer_border");\par
+            \} \par
+            //SUDOKU OUTER VERTICAL BORDER, PART BY PART\par
+            else if(tpart ==   2 || tpart ==   8 || tpart ==  14 || tpart ==  22 || tpart ==  28 || tpart ==  34 ||\par
+                    tpart ==  42 || tpart ==  49 || tpart ==  55 || tpart ==  63 || tpart ==  69 || tpart ==  75 ||\par
+                    tpart ==  83 || tpart ==  89 || tpart ==  95 || tpart == 103 || tpart == 109 || tpart == 115 ||\par
+                    tpart == 123 || tpart == 129 || tpart == 135 || tpart == 143 || tpart == 149 || tpart == 155 ||\par
+                    tpart == 163 || tpart == 169 || tpart == 175 )\{\par
+                colorSet(colorTable);\par
+                gamePart("sudoku_outer_vertical_border_small");\par
+            \}\par
+            //SUDOKU OUTER VERTICAL BORDER WITH NEXT LINE, PART BY PART\par
+            else if(tpart == 20 || tpart == 40 || tpart == 61 || tpart == 81 || tpart == 101|| tpart == 121 ||\par
+                    tpart == 141 || tpart == 161 || tpart == 181)\{ \par
+                colorSet(colorTable); \par
+                gamePart("sudoku_outer_vertical_border_next_line");\par
+            \} \par
+            //SUDOKU NUMBERS\par
+            else if(tpart ==   3 || tpart ==   5 || tpart ==   7 || tpart ==   9 || tpart ==  11 || tpart ==  13 ||\par
+                    tpart ==  15 || tpart ==  17 || tpart ==  19 || tpart ==  23 || tpart ==  25 || tpart ==  27 || \par
+                    tpart ==  29 || tpart ==  31 || tpart ==  33 || tpart ==  35 || tpart ==  37 || tpart ==  39 ||\par
+                    tpart ==  43 || tpart ==  45 || tpart ==  47 || tpart ==  50 || tpart ==  52 || tpart ==  54 ||\par
+                    tpart ==  56 || tpart ==  58 || tpart ==  60 || tpart ==  64 || tpart ==  66 || tpart ==  68 ||\par
+                    tpart ==  70 || tpart ==  72 || tpart ==  74 || tpart ==  76 || tpart ==  78 || tpart ==  80 ||\par
+                    tpart ==  84 || tpart ==  86 || tpart ==  88 || tpart ==  90 || tpart ==  92 || tpart ==  94 ||\par
+                    tpart ==  96 || tpart ==  98 || tpart == 100 || tpart == 104 || tpart == 106 || tpart == 108 ||\par
+                    tpart == 110 || tpart == 112 || tpart == 114 || tpart == 116 || tpart == 118 || tpart == 120 ||\par
+                    tpart == 124 || tpart == 126 || tpart == 128 || tpart == 130 || tpart == 132 || tpart == 134 ||\par
+                    tpart == 136 || tpart == 138 || tpart == 140 || tpart == 144 || tpart == 146 || tpart == 148 ||\par
+                    tpart == 150 || tpart == 152 || tpart == 154 || tpart == 156 || tpart == 158 || tpart == 160 ||\par
+                    tpart == 164 || tpart == 166 || tpart == 168 || tpart == 170 || tpart == 172 || tpart == 174 ||\par
+                    tpart == 176 || tpart == 178 || tpart == 180) \{\par
+                \par
+                colorSet(15);\par
+\par
+                //COLOR\par
+                if(sudokuHighlights [sudokuBuildNumber]=="0")\{ \par
+                    colorSet (15);\par
+                \}\par
+                else if(sudokuHighlights [sudokuBuildNumber]=="F")\{\par
+                colorSet(14);\par
+                \}\par
+\par
+                //DISPLAY POINTER OR NOT\par
+                if (sudokuStatus == "quitted" || sudokuStatus == "finished") \{\par
+                    //OUTPUT NUMBER \par
+                    cout<<sudokuPuzzle [sudokuBuildNumber];\par
+                \}\par
+                else\{\par
+\par
+                //POINTER\par
+                if(sudokuBuildNumber == sudokuPointer)\{\par
+                    colorSet(10); \par
+                    if (sudokuHighlights [sudokuPointer]=="F")\par
+                    \{\par
+                        colorSet(11);\par
+                        cout<<sudokuPuzzle [ sudokuBuildNumber];\par
+                    \} \par
+                    else\{\par
+\par
+                        if (sudokuPuzzle[sudokuBuildNumber] == "1" || sudokuPuzzle[sudokuBuildNumber]== "2" ||\par
+                        sudokuPuzzle[sudokuBuildNumber] == "2" || sudokuPuzzle[sudokuBuildNumber] == "3" ||\par
+                        sudokuPuzzle[sudokuBuildNumber] == "4" || sudokuPuzzle[sudokuBuildNumber] == "5" ||\par
+                        sudokuPuzzle[sudokuBuildNumber] == "6" || sudokuPuzzle[sudokuBuildNumber] == "7" ||\par
+                        sudokuPuzzle[sudokuBuildNumber] == "8" || sudokuPuzzle[sudokuBuildNumber] == "9" )\{\par
+                            cout<<sudokuPuzzle [ sudokuBuildNumber];\par
+                    \}\par
+                    else\{\par
+                            cout<<"x";\par
+                            \}\par
+\par
+                        \}\par
+\par
+                    \}\par
+                    else\{\par
+                        //OUTPUT NUMBER\par
+                        cout<<sudokuPuzzle [ sudokuBuildNumber];\par
+                    \}\par
+                    \par
+                \}\par
+        //ADD\par
+        sudokuBuildNumber++;\par
+\par
+    \}\par
+    //SUDOKU INNER VERTICAL BORDER, PART BY PART\par
+        else if(tpart == 4 || tpart == 6 || tpart == 10|| tpart == 12|| tpart == 16|| tpart == 18 ||\par
+        tpart == 24 || tpart == 26 || tpart == 30 || tpart == 32|| tpart == 36 || tpart == 38 || \par
+        tpart == 44 || tpart == 46 || tpart == 51 || tpart == 53 || tpart == 57 || tpart == 59 || \par
+        tpart == 65 || tpart == 67 || tpart == 71 || tpart == 73 || tpart == 77 || tpart == 79 || \par
+        tpart == 85 || tpart == 87 || tpart == 91 || tpart == 93 || tpart == 97 || tpart == 99 || \par
+        tpart == 105 || tpart == 107 || tpart == 111 || tpart == 113 || tpart == 117 || tpart == 119 ||\par
+        tpart == 125 || tpart == 127 || tpart == 131 || tpart == 133 || tpart == 137 || tpart == 139 || \par
+        tpart == 145 || tpart == 147 || tpart == 151 || tpart == 153 || tpart == 157 || tpart == 159 || \par
+        tpart == 165 || tpart == 167 || tpart == 171 || tpart == 173 || tpart == 177 || tpart == 179)\{\par
+         colorSet(colorTable);\par
+gamePart("sudoku_inner_vertical_border_small");\par
+\}\par
+//SUDOKU INNER BORDER\par
+else if (tpart == 21 || tpart == 41 || tpart == 82 || tpart == 102 || tpart ==142 || tpart == 162) \{ \par
+colorSet (colorTable);\par
+gamePart("sudoku_inner_border");\par
+\}\par
+\}\par
+cout<<endl;\par
+// TABLE GENERATOR --//\par
+\par
+//-- DETAILS --//\par
+\par
+//SET PROGRESS\par
+final_progress = round(((double (correct)/81.0)*100.0));\par
+\par
+//CHECK PLAYER CONDITION\par
+if(sudokuStatus == "playing")\{\par
+colorSet(11);\par
+cout<<" Progress: ";\par
+colorSet(15);\par
+\par
+//SWITCH CASE\par
+switch(level) \{\par
+  case 1:\par
+cout<<correct<<"/81";\par
+break;\par
+case 2:\par
+cout<<final_progress<<"%";\par
+break;\par
+ default:\par
+showProgressHardMode (final_progress);\par
+\}\par
+\par
+cout<<endl;\par
+colorSet (14);\par
+cout<<" Press";\par
+colorSet(12);\par
+cout<<" [Esc]";\par
+colorSet(15);\par
+cout<<" or ";\par
+colorSet(12);\par
+cout<<"[P] ";\par
+colorSet (14);\par
+cout<<"to pause the game";\par
+\} \par
+else if (sudokuStatus == "quitted")\{\par
+colorSet (14);\par
+cout<<" Sorry you did not finish"<<endl\par
+<<" the sudoku puzzle."<<endl;\par
+colorSet(13);\par
+cout<<" Better luck next time!"<<endl;\par
+colorSet (15);\par
+cout<<" By the way, thats the solution."<<endl<<endl;\par
+colorSet(7);\par
+cout<<" [Press any key to exit the game]";\par
+getch(); //pause\par
+main(); //go to main menu\par
+\par
+\}\par
+else if (sudokuStatus == "finished")\{ \par
+    colorSet(10); \par
+cout<<" Congratulations you solve"<<endl \par
+<<" the sudoku puzzle."<<endl; \par
+colorSet(13); \par
+cout<<" Your sudoku skills are"<<endl \par
+<<" quite impressive!"<<endl<<endl; \par
+colorSet(7); \par
+cout<<" [Press any key to exit the game]"; \par
+getch(); //pause \par
+main(); //go to main menu\par
+\} \par
+else\{ //HIDDEN DETAILS\par
+cout<<" Pointer: "<<sudokuPointer<<endl; \par
+cout<<" Highlight: "<<sudokuHighlights [ sudokuPointer]<<endl;\par
+\} \par
+//-- DETAILS --//\par
+\par
+//-- KEYBOARD FUNCTIONS --//\par
+while(true)\par
+\{\par
+\par
+int keyPress; //key code\par
+colorSet(15);\par
+keyPress = 0; //reset \par
+keyPress = getch(); //get number\par
+\par
+if (keyPress == 0 || keyPress == 224) \{ //If arrow keys and delete key pressed \par
+if (keyPress == 328)\{ //convert key code\par
+keyPress = 256 + getch();//UP \par
+upKey();\par
+break;\par
+\} \par
+else if (keyPress == 336) \{ //DOWN\par
+downKey();\par
+break;\par
+\} \par
+else if (keyPress == 331)\{ //LEFT \par
+ leftKey();\par
+break;\par
+\}\par
+ else if (keyPress == 333)\{ //RIGHT\par
+ rightKey(); \par
+    break;\par
+\} \par
+else if (keyPress == 339)\{ //DELETE (DeL)\par
+ setNumberKey("clear"); \par
+ break;\par
+\}\par
+\} \par
+else\{ //If other key pressed\par
+\par
+//MOVEMENT KEYS\par
+if (keyPress == 119 || keyPress == 87)\{ //Up (W) \par
+upKey(); \par
+break;\par
+\}\par
+else if (keyPress == 115 || keyPress == 83)\{ //Down (S)\par
+downKey();\par
+ break;\par
+\} \par
+else if (keyPress == 97 || keyPress == 65)\{ //Left (A)\par
+leftKey();\par
+ break;\par
+\}\par
+ else if (keyPress == 100 || keyPress == 68)\{ //Right (D) \par
+    rightKey();\par
+break;\par
+\}\par
+//NUMBER KEYS \par
+if (keyPress == 49)\{ //One (1) \par
+setNumberKey("1"); \par
+break;\par
+\}\par
+ else if (keyPress == 50)\{ //Two (2)\par
+ setNumberKey("2");\par
+  break;\par
+\} \par
+else if (keyPress == 51)\{ //Three (3) \par
+ setNumberKey("3");\par
+  break;\par
+\} \par
+else if (keyPress == 52)\{ //Four (4)\par
+ setNumberKey("4");\par
+  break;\par
+\} \par
+else if (keyPress == 53)\{ //Five (5)\par
+ setNumberKey("5"); \par
+ break;\par
+\}\par
+else if (keyPress == 54)\{ //Six (6)\par
+ setNumberKey("6"); \par
+ break;\par
+\}\par
+else if (keyPress == 55)\{ //Seven (7)\par
+ setNumberKey("7");\par
+  break;\par
+\} \par
+else if (keyPress == 56)\{ //Eight (8)\par
+ setNumberKey("8");\par
+  break;\par
+\} \par
+else if (keyPress == 57)\{ //Nine (9)\par
+ setNumberKey("9");\par
+break;\par
+\} \par
+//DELETE KEY\par
+else if (keyPress == 8)\{ //Backspace \par
+ setNumberKey("clear");\par
+break;\par
+\}\par
+ //PAUSE KEY\par
+else if (keyPress == 27|| keyPress == 112|| keyPress == 80)\{ //Escape (Esc) or P \par
+    pauseGame();\par
+break;\par
+\}\par
+else\{\par
+continue;\par
+\}\par
+\}\par
+\}\par
+//-- KEYBOARD FUNCTIONS --//\par
+\par
+//-- CHECKER --//\par
+checkGame();\par
+// CHECKER --//\par
+\par
+\}\par
+\par
+//CHECK GAME\par
+void checkGame()\{\par
+\par
+//SET SUDOKU PUZZLE SIZE\par
+sudokuPuzzleSize = (sizeof(sudokuPuzzle)/sizeof(sudokuPuzzle[0]));\par
+\par
+correct = 0; //reset total of correct numbers in the grid \par
+for (int sudokuPointing = 0; sudokuPointing < sudokuPuzzleSize; sudokuPointing++)\{ \par
+    if(sudokuPuzzle[ sudokuPointing] == sudokuSolution [sudokuPointing])\{ \par
+        correct++;\par
+    \}\par
+\}\par
+\par
+//GAME FINISHED\par
+if (correct == sudokuPuzzleSize)\{\par
+sudokuStatus = "finished";\par
+\}\par
+\par
+//RESUME TO THE GAME\par
+mainGame();\par
+\}\par
+\par
+//GAME CONTROL FUNCTIONS\par
+void upKey()\{\par
+sudokuPointer = sudokuPointer - 9;\par
+//TOP BARRIER\par
+if (sudokuPointer==-9)\par
+\{\par
+sudokuPointer=72;\par
+\}\par
+else if (sudokuPointer==-8)\par
+\{\par
+sudokuPointer=73;\par
+\}\par
+else if (sudokuPointer==-7)\par
+\{\par
+sudokuPointer=74;\par
+\}\par
+else if (sudokuPointer==-6)\par
+\{\par
+sudokuPointer=75;\par
+\}\par
+else if (sudokuPointer==-5)\par
+\{\par
+sudokuPointer=76;\par
+\}\par
+ else if(sudokuPointer==-4)\par
+\{\par
+sudokuPointer=77;\par
+\}\par
+else if (sudokuPointer ==-3)\par
+\{\par
+ sudokuPointer=78;\par
+\}\par
+else if (sudokuPointer==-2)\par
+\{\par
+sudokuPointer=79;\par
+\}\par
+else if (sudokuPointer<=-1)\par
+\{\par
+ sudokuPointer=80;\par
+\}\par
+\}\par
+void downKey()\{\par
+sudokuPointer = sudokuPointer + 9;\par
+//BOTTOM BARRIER\par
+if(sudokuPointer==81)\par
+\{\par
+sudokuPointer=0;\par
+\}\par
+else if(sudokuPointer ==82)\par
+\{\par
+sudokuPointer=1;\par
+\}\par
+else if (sudokuPointer==83)\par
+\{\par
+sudokuPointer=2;\par
+\}\par
+else if(sudokuPointer==84)\par
+\{\par
+sudokuPointer=3;\par
+\}\par
+else if(sudokuPointer==85)\par
+\{\par
+sudokuPointer=4;\par
+\}\par
+else if(sudokuPointer==86)\par
+\{\par
+sudokuPointer=5;\par
+\}\par
+else if(sudokuPointer==87)\par
+\{\par
+sudokuPointer=6;\par
+\}\par
+else if(sudokuPointer==88)\par
+sudokuPointer=7;\par
+else\par
+if(sudokuPointer>=89)\par
+\{\par
+sudokuPointer=8;\par
+\} \par
+\}\par
+void leftKey()\{\par
+sudokuPointer = sudokuPointer -1;\par
+//LEFT BARRIER\par
+if(sudokuPointer==62)\par
+\{\par
+sudokuPointer=71;\par
+\}\par
+else if(sudokuPointer==71)\par
+\{\par
+sudokuPointer=80;\par
+\}\par
+else if(sudokuPointer==53)\par
+\{\par
+sudokuPointer=62;\par
+\} \par
+else if (sudokuPointer==44)\par
+\{\par
+sudokuPointer=53;\par
+\}\par
+ else if (sudokuPointer==35)\par
+\{\par
+sudokuPointer=44;\par
+\}\par
+else if(sudokuPointer==26)\par
+\{\par
+sudokuPointer=35;\par
+\}\par
+ else if (sudokuPointer==17)\par
+\{\par
+sudokuPointer=26;\par
+\}\par
+else if (sudokuPointer==8)\par
+\{\par
+sudokuPointer=17;\par
+\}\par
+else if(sudokuPointer ==-1)\par
+\{\par
+sudokuPointer=8;\par
+\}\par
+\} \par
+void rightKey()\{\par
+sudokuPointer = sudokuPointer + 1;\par
+//RIGHT BARRIER\par
+if(sudokuPointer==81)\par
+\{\par
+sudokuPointer=72;\par
+\}\par
+else if(sudokuPointer ==72)\par
+\{\par
+sudokuPointer=63;\par
+\} \par
+else if (sudokuPointer==63)\par
+\{\par
+sudokuPointer=54;\par
+\}\par
+else if(sudokuPointer==54)\par
+\{\par
+sudokuPointer=45;\par
+\}\par
+else if(sudokuPointer==45)\par
+\{\par
+sudokuPointer=36;\par
+\}\par
+else if(sudokuPointer==36)\par
+\{\par
+sudokuPointer=27;\par
+\}\par
+else if (sudokuPointer==27)\par
+\{\par
+sudokuPointer=18;\par
+\}\par
+else if (sudokuPointer==18)\par
+\{\par
+sudokuPointer=9;\par
+\}\par
+else if (sudokuPointer==9)\par
+\{\par
+sudokuPointer=0;\par
+\}\par
+\par
+\}\par
+\par
+//SET NUMBER KEY OR CLEAR THE NUMBER IN THE GRID\par
+void setNumberKey(string value)\{\par
+\par
+if(!(value == "clear"))\{\par
+\par
+if(sudokuHighlights [sudokuPointer] == "0")\{\par
+    sudokuPuzzle [sudokuPointer] = value;\par
+\}\par
+\}\par
+else\{\par
+if(sudokuHighlights [ sudokuPointer] == "0")\{\par
+sudokuPuzzle [ sudokuPointer] = "";\par
+\}\par
+\}\par
+\}\par
+//PAUSE GAME\par
+\par
+void pauseGame()\{\par
+//DISPLAY\par
+do\{\par
+system("cls");\par
+colorSet (4); //DARK RED\par
+gamePart("line_small_left"); \par
+colorSet(15); //WHITE\par
+colorSet(15); //15\par
+cout<<"SUDOKU";\par
+colorSet(4); //DARK RED\par
+gamePart("line_small_right");\par
+colorSet(13); //13\par
+cout<<setw(24) <<right<<"GAME PAUSED"<<endl;\par
+colorSet (4); //DARK RED\par
+gamePart("seperator");\par
+colorSet(15); //WHITE\par
+cout<<"[1] ";\par
+colorSet (14); //YELLOW\par
+cout<<"RESUME"<<endl;\par
+colorSet(15); //WHITE\par
+cout<<"[2] ";\par
+colorSet(10); //LIGHT GREEN\par
+cout<<"INSTRUCTIONS"<<endl;\par
+colorSet (15); //WHITE\par
+cout<<"[3] ";\par
+colorSet(12); //LIGHT RED\par
+cout<<"QUIT"<<endl;\par
+colorSet (4); //4\par
+gamePart("seperator");\par
+colorSet (7); //LIGHT GRAY\par
+cout<<" (Press the number of your choice!) "; \par
+colorSet (15); //WHITE\par
+\par
+//GET USER CHOICE\par
+char select = getch(); \par
+if(!(select<'1' || select>'3'))\{\par
+cout<<endl;\par
+if(select == '2')\{\par
+helpSudoku ("in-game");\par
+\} \par
+else if(select == '3')\{\par
+sudokuStatus = "quitted";\par
+break;\par
+\}\par
+else\{\par
+break;\par
+\}\par
+\}\par
+\} while(true);\par
+\par
+\}\par
+\par
+//INSTRUCTIONS\par
+void helpSudoku (string located)\{\par
+system("cls");\par
+colorSet(4); //DARK RED \par
+gamePart("line_small_left");\par
+colorSet (15); //15\par
+cout<<"SUDOKU";\par
+colorSet (4); //DARK RED \par
+gamePart("line_small_right");\par
+colorSet (13); //13\par
+cout<<setw(25) <<right<<"INSTRUCTIONS"<<endl;\par
+colorSet(4); //DARK RED\par
+gamePart("seperator");\par
+colorSet(10); //LIGHT GREEN\par
+cout<<" How to play: "<<endl;\par
+colorSet(15); //WHITE\par
+cout<<"* The sudoku puzzle is consist of"<<endl\par
+<<" a 9x9 grid, you have to fill"<<endl\par
+<<" the empty squares using the"<<endl\par
+ <<"numbers 1 to 9."<<endl\par
+<<" * Use the 1-9 keys in your"<<endl \par
+<<" keybord to fill the sudoku"<<endl \par
+<<"puzzle."<<endl\par
+<<" * To move arround the sudoku"<<endl \par
+<<" puzzle, use the WASD letter"<<endl\par
+<<"keys or the arrow keys"<<endl\par
+<<" * Use backspace or delete key to"<<endl \par
+<<" clear the number selected in"<<endl\par
+<<" the sudoku puzzle."<<endl\par
+<<" *Once you finish the sudoku"<<endl\par
+<<" puzzle, it will prompt you that"<<endl \par
+<<"you finished it if not you can"<<endl\par
+<<" press P then you can choose"<<endl\par
+<<" \\"Quit\\" in the pause menu"<<endl\par
+<<" if your having a hard time."<<endl;\par
+colorSet (4); //DARK RED\par
+gamePart("seperator");\par
+colorSet(7); //LIGHT GRAY\par
+cout<<" (Press any key to go back!) "; \par
+colorSet(15); //WHITE\par
+\par
+//PAUSE\par
+getch();\par
+//GO TO MAIN MENU\par
+if(located == "main")\{\par
+main();\par
+\}\par
+\par
+\}\par
+\par
+//EXIT \par
+void exitMenu()\{\par
+\par
+//DISPLAY\par
+do\{\par
+\par
+system("cls");\par
+colorSet (4); //DARK RED \par
+gamePart("line_small_left");\par
+colorSet (15); //15\par
+cout<<"SUDOKU";\par
+colorSet (4); //DARK RED\par
+gamePart("line_small_right");\par
+colorSet (13); //13\par
+cout<<setw(28) <<right<<"DO YOU WANT TO EXIT"<<endl;\par
+colorSet (4); //DARK RED\par
+gamePart("seperator"); \par
+colorSet (15); //WHITE\par
+cout<<"[1] ";\par
+colorSet(12); //LIGHT RED\par
+cout<<"YES"<<endl;\par
+colorSet(15); //WHITE\par
+cout<<"[2] ";\par
+colorSet(10); //LIGHT GREEN\par
+cout<<"NO"<<endl;\par
+colorSet (4); //4\par
+gamePart("seperator"); \par
+colorSet(7); //LIGHT GRAY \par
+cout<<" (Press the number of your choice!) ";\par
+colorSet (15); //WHITE\par
+\par
+//GET USER CHOICE\par
+char select = getch(); \par
+if(!(select<'1' || select> '2'))\{\par
+cout<<endl;\par
+if(select == '1')\{\par
+exit(0);\par
+\}\par
+else\{\par
+main();\par
+\}\par
+\}\par
+\par
+\} while(true);\par
+\par
+\par
+\}\par
+\par
+//COLOR SET\par
+void colorSet(int tint)\{\par
+SetConsoleTextAttribute(GetStdHandle (STD_OUTPUT_HANDLE), tint);\par
+\}\par
+\par
+//GAME PARTS\par
+void gamePart(string part)\{\par
+\par
+if(part == "line_small_left")\{\par
+cout<<"=== ";\par
+\} \par
+else if(part == "line_small_right")\{\par
+cout<<"==="<<endl;\par
+\}\par
+else if (part == "seperator")\{\par
+cout<<"=="<<endl;\par
+\} \par
+else if(part == "sudoku_outer_border")\{ \par
+    cout<<" $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ "<<endl;\par
+\}\par
+else if (part == "sudoku_outer_vertical_border_small")\{\par
+cout<<" $ ";\par
+\} \par
+else if (part == "sudoku_outer_vertical_border_next_line")\{\par
+cout<<" $"<<endl;\par
+\}\par
+else if (part == "sudoku_inner_vertical_border_small")\{\par
+cout<<" $ ";\par
+\} \par
+ else if (part == "sudoku_inner_border")\{ \par
+    cout<<" $---$---$---$---$---$---$---$---$---$"<<endl;\par
+\}\par
+else\{\par
+cout<<"";\par
+\}\par
+\par
+\}\par
+\par
+//HIDE CURSOR IN THE CONSOLE\par
+\par
+void hideCursor (bool condition)\par
+\{\par
+HANDLE out = GetStdHandle (STD_OUTPUT_HANDLE);\par
+CONSOLE_CURSOR_INFO cursorInfo;\par
+GetConsoleCursorInfo (out, &cursorInfo);\par
+cursorInfo.bVisible = (!(condition)); // set the cursor visibility\par
+SetConsoleCursorInfo (out, &cursorInfo);\par
+\}\par
+\par
+}
+ 
