@@ -1,0 +1,26 @@
+//Flash screen with increasing circles
+#include<stdio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<conio.h>
+void main()
+{
+	int i,gd=DETECT,gm,x,y,rad=1;
+	initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+	x=getmaxx()/2;
+	y=getmaxy()/2;
+	//setbkcolor(4);
+	for(i=1;i<=11;i++)
+	{
+		setfillstyle(i,i);
+		rad=20*i;
+		circle(x,y,rad);
+		floodfill(x+(rad-x2),y,getmaxcolor());
+		sound(200);
+		delay(100);
+		nosound();
+		delay(100);
+	}
+	getch();
+}
+
