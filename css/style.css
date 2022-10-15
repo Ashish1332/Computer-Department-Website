@@ -1784,14 +1784,28 @@ gap:15px;
   width: 80%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction:row-reverse;
+  flex-direction:row;
 }
 .project9{
   background-image:  linear-gradient(60deg, #29323c 0%, #485563 100%);;
   width: 80%;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row-reverse;
+}
+.project10{
+  background-image:  linear-gradient(60deg, #29323c 0%, #485563 100%);;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
+}
+.project11{
+  background-image:  linear-gradient(60deg, #29323c 0%, #485563 100%);;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
 }
 .project_hero{
   flex: 0 0 50%;
@@ -1916,6 +1930,14 @@ gap:15px;
 
   }
   .project9{
+    flex-direction: column;
+
+  }
+  .project10{
+    flex-direction: column;
+
+  }
+  .project11{
     flex-direction: column;
 
   }
